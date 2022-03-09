@@ -3,8 +3,12 @@ import './App.css';
 import About from './components/About/index';
 import Nav from './components/Nav/index';
 import Gallery from './components/Gallery/index';
+import ContactForm from './components/Contact/index';
+
 
 function App() {
+
+  const [contactSelected, setContactSelected] = useState(false);
 
   const [categories] = useState([
     {
@@ -24,10 +28,18 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        {!contactSelected ? (
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+            <ContactForm></ContactForm>
+          )}
       </main>
     </div>
   );
